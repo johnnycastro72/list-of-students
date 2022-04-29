@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
-import ListOfStudents from './components/ListOfStudents'
+import ListOfStudents from './components/StudentsForm'
 
 function App() {
 

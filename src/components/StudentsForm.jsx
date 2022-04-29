@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
+import StudentsList from './StudentsList';
 
-const ListOfStudents = () => {
+const StudentsForm = () => {
 
   const onAddStudent = (event) => {
     event.preventDefault();
-    if(name && lastName){
+    if (name && lastName) {
       const student = {
         name,
         lastName
       }
       setList([...list, student])
-    } 
+    }
   }
 
   const [list, setList] = useState([])
@@ -18,13 +19,13 @@ const ListOfStudents = () => {
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
 
-  const addName = (event)=>{
+  const addName = (event) => {
     setName(event.target.value)
   }
 
- const addLastName = (event) => {
+  const addLastName = (event) => {
     setLastName(event.target.value)
- }
+  }
 
 
   return (
@@ -34,15 +35,12 @@ const ListOfStudents = () => {
         <label>Name</label>
         <input onChange={addName} type="text" name="name" />
         <label>Last name</label>
-        <input onChange={addLastName}  type="text" name="lastName" />
+        <input onChange={addLastName} type="text" name="lastName" />
         <button onClick={onAddStudent}>add student</button>
-        {list.map((student, index) => <div key={index}>
-          <h2>{student.name}</h2>
-          <h2>{student.lastName}</h2>
-        </div>)}
+        <StudentsList list = { list } />
       </form>
     </div>
   )
 }
 
-export default ListOfStudents
+export default StudentsForm
