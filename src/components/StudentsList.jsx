@@ -1,15 +1,22 @@
 import React from 'react'
+import { FaTimes } from 'react-icons/fa'
 
-const StudentsList = ({ list }) => {
+
+const StudentsList = ({ list, onDelete }) => {
     return (
         <div>
-            {list.map((student, index) =>
-                <div key={index}>
-                    <h2>{student.name}</h2>
-                    <h2>{student.lastName}</h2>
+            {list.map((student) =>
+                <div key={id} className='student'>
+                    <h3>{student.name}  {student.lastName} 
+                    <FaTimes style={iconStyles} onClick={() => onDelete(student.id)} /></h3>
                 </div>)}
         </div>
     )
+}
+
+const iconStyles = {
+    color: 'red',
+    cursor: 'pointer',
 }
 
 export default StudentsList

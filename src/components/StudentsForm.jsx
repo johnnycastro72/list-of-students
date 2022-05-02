@@ -3,18 +3,33 @@ import StudentsList from './StudentsList';
 
 const StudentsForm = () => {
 
+  const [id, setId] = useState(0);
+  const [list, setList] = useState([]);
+
+  // Id Increments
+  const addToId = () => {
+    setId(id + 1);
+  };
+
+  // Delete Student
   const onAddStudent = (event) => {
     event.preventDefault();
     if (name && lastName) {
       const student = {
+        id,
         name,
         lastName
       }
       setList([...list, student])
+      addToId()
+      event.reset()
     }
   }
 
-  const [list, setList] = useState([])
+  // Delete Student
+  const deleteStudent = (id) => {
+    setList(list.filter((student) => student.id !== id));
+  };
 
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -30,14 +45,13 @@ const StudentsForm = () => {
 
   return (
     <div>
-      <h1>Hello from the list of students</h1>
       <form>
-        <label>Name</label>
+        <label>Name </label>
         <input onChange={addName} type="text" name="name" />
-        <label>Last name</label>
+        <label> Last name </label>
         <input onChange={addLastName} type="text" name="lastName" />
-        <button onClick={onAddStudent}>add student</button>
-        <StudentsList list = { list } />
+        <button className='btn' onClick={onAddStudent}>add student</button>
+        <StudentsList list = { list } onDelete = {deleteStudent} id = {id} />
       </form>
     </div>
   )
